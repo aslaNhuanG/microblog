@@ -12,7 +12,7 @@ module.exports = function(app) {
 
     app.post('/reg', function(req, res){
         if(req.body['password-repeat']!=req.body['password']){
-            req.flash('error','Tow passwords different.');
+            res.locals.error = 'Tow passwords different.';
             //req.session.flash = req.session.flash || {} ;
             //req.session.flash.error = "Tow passwords different.";
             return res.redirect('/reg');
@@ -30,16 +30,16 @@ module.exports = function(app) {
                 err = 'Username already exists.';
             }
             if(err){
-                req.flash('error',err);
+                res.locals.error = err;
                 return res.redirect('/reg');
             }
             newUser.save(function(err){
                 if(err){
-                    req.flash('error', err);
+                    res.locals.error = err;
                     return res.redirect('/reg');
                 }
                 req.session.user = newUser;
-                req.flash('success','注册成功');
+                res.locals.success = '注册成功';
                 res.redirect('/');
             })
 

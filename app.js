@@ -51,10 +51,10 @@ app.configure('production', function(){
 
 //app.dynamicHelpers
 app.use(function(req, res, next){
-    res.locals.csrf = req.session ? req.session._csrf : '';
-    res.locals.error = req.flash('error').toString();
-    res.locals.success = req.flash('success').toString();
-    res.locals.user = req.session ? req.session.user : null;
+    //res.locals.csrf = req.session ? req.session._csrf : '';
+    res.locals.error = req.session.error;
+    res.locals.success = req.session.success;
+    res.locals.user = req.session.user;
     next();
 });
 
