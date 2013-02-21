@@ -19,7 +19,7 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li class="active"><a href="/">首页</a></li>
-                        <% if(!locals.user){ %>
+                        <% console.log('layout',locals.user);if(!locals.user){ %>
                             <li><a href="/login">登入</a></li>
                             <li><a href="/reg">注册</a></li>
                         <% } else { %>
@@ -31,14 +31,14 @@
         </div>
     </div>
     <div class="container" id="container">
-        <% if(locals.success){ %>
+        <% console.log('success',locals.success); if(locals.success){ %>
             <div class="alert alert-success">
-                <%= success %>
+                <%= locals.success %>
             </div>
         <% } %>
-        <% if(locals.error){ %>
+        <% console.log('error',locals.error);if(locals.error){ %>
             <div class="alert alert-error">
-                <%= error %>
+                <%= locals.error %>
             </div>
         <% } %>
         <%- body %>
