@@ -7,8 +7,8 @@ module.exports = function(app) {
         res.render('index', {
             title: '首页',
             user: req.session.user,
-            error: req.session.error,
-            success: req.session.success
+            error: req.flash('error').toString(),
+            success: req.flash('success').toString()
         });
     });
 
@@ -16,14 +16,14 @@ module.exports = function(app) {
         res.render('reg', {
             title: '用户注册',
             user: req.session.user,
-            error: req.session.error,
-            success: req.session.success
+            error: req.flash('error').toString(),
+            success: req.flash('success').toString()
         });
     });
 
     app.post('/reg', function(req, res){
         if(req.body['password-repeat']!=req.body['password']){
-            req.session.error = 'Tow passwords different.';
+            req.flash('error','Tow passwords different.');
             return res.redirect('/reg');
         }
         var md5 = crypto.createHash('md5');
@@ -39,16 +39,16 @@ module.exports = function(app) {
                 err = 'Username already exists.';
             }
             if(err){
-                req.session.error = err;
+                req.flash('error', 'err');
                 return res.redirect('/reg');
             }
             newUser.save(function(err){
                 if(err){
-                    req.session.error = err;
+                    req.flash('error','err');
                     return res.redirect('/reg');
                 }
                 req.session.user = newUser;
-                req.session.success = '注册成功';
+                req.flash('success','注册成功');
                 res.redirect('/');
             })
         })

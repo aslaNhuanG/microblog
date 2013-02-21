@@ -41,7 +41,7 @@
       <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="9" selection-start="829" selection-end="829" vertical-scroll-proportion="0.4556962">
+            <state line="48" column="17" selection-start="1557" selection-end="1557" vertical-scroll-proportion="0.6455696">
               <folding />
             </state>
           </provider>
@@ -115,9 +115,9 @@
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/views/layout.ejs" />
         <option value="$PROJECT_DIR$/models/user.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -441,7 +441,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="9" selection-start="829" selection-end="829" vertical-scroll-proportion="0.4556962">
+        <state line="48" column="17" selection-start="1557" selection-end="1557" vertical-scroll-proportion="0.6455696">
           <folding />
         </state>
       </provider>
