@@ -3,7 +3,6 @@ var User = require('../models/user.js');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
-        console.log('get /',req.session.user);
         res.render('index', {
             title: '首页',
             user: req.session.user,

@@ -54,12 +54,10 @@ app.configure('production', function(){
 //app.dynamicHelpers
 /*app.use(function(req, res, next){
     //res.locals.csrf = req.session ? req.session._csrf : '';
-    console.log('app middleware', req.session);
     res.locals.error = req.session ? req.session.error : '';
     res.locals.success = req.session ? req.session.success : '';
     res.locals.user = req.session ? req.session.user : null;
 
-    //console.log(req.session, req.session.user);
     next();
 });*/
 
