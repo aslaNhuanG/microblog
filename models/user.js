@@ -33,7 +33,6 @@ User.prototype.save = function(callback){
 
 User.get = function get(username, callback){
     mongodb.open(function(err, db){
-    	console.log(22);
         if(err){
             return callback(err);
         }

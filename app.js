@@ -8,8 +8,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , util = require('util');
-var partials = require('express-partials'); // 应用了部分视图
 
+var partials = require('express-partials'); // 应用了部分视图
+var flash = require('connect-flash');
 //var helpers = require('express-helpers')(app);
 var MongoStore = require('connect-mongo')(express);
 var settings = require('./settings.js');
@@ -25,7 +26,8 @@ app.configure(function(){
   app.use(express.bodyParser());    // 用于获取POST等传送的数据
   app.use(express.methodOverride()); // 用于支持浏览器的PUT，DELETE等HTTP方法
   app.use(partials());
-    app.use(express.cookieParser());
+  app.use(express.cookieParser());
+  app.use(flash());
   app.use(express.session({
         secret: settings.cookieSecret,
         store: new MongoStore({
@@ -50,13 +52,16 @@ app.configure('production', function(){
 });
 
 //app.dynamicHelpers
-app.use(function(req, res, next){
+/*app.use(function(req, res, next){
     //res.locals.csrf = req.session ? req.session._csrf : '';
-    res.locals.error = req.session.error;
-    res.locals.success = req.session.success;
-    res.locals.user = req.session.user;
+    console.log('app middleware', req.session);
+    res.locals.error = req.session ? req.session.error : '';
+    res.locals.success = req.session ? req.session.success : '';
+    res.locals.user = req.session ? req.session.user : null;
+
+    //console.log(req.session, req.session.user);
     next();
-});
+});*/
 
 routes(app);
 

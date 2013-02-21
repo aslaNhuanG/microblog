@@ -3,18 +3,27 @@ var User = require('../models/user.js');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
-        res.render('index', {title: '首页'});
+        console.log('get /',req.session.user);
+        res.render('index', {
+            title: '首页',
+            user: req.session.user,
+            error: req.session.error,
+            success: req.session.success
+        });
     });
 
     app.get('/reg', function(req, res) {
-        res.render('reg', {title: '用户注册'});
+        res.render('reg', {
+            title: '用户注册',
+            user: req.session.user,
+            error: req.session.error,
+            success: req.session.success
+        });
     });
 
     app.post('/reg', function(req, res){
         if(req.body['password-repeat']!=req.body['password']){
-            res.locals.error = 'Tow passwords different.';
-            //req.session.flash = req.session.flash || {} ;
-            //req.session.flash.error = "Tow passwords different.";
+            req.session.error = 'Tow passwords different.';
             return res.redirect('/reg');
         }
         var md5 = crypto.createHash('md5');
@@ -30,19 +39,18 @@ module.exports = function(app) {
                 err = 'Username already exists.';
             }
             if(err){
-                res.locals.error = err;
+                req.session.error = err;
                 return res.redirect('/reg');
             }
             newUser.save(function(err){
                 if(err){
-                    res.locals.error = err;
+                    req.session.error = err;
                     return res.redirect('/reg');
                 }
                 req.session.user = newUser;
-                res.locals.success = '注册成功';
+                req.session.success = '注册成功';
                 res.redirect('/');
             })
-
         })
 
     })
