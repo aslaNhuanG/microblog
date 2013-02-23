@@ -1,3 +1,4 @@
+<% if(!user){ %>
 <div class="hero-unit">
     <h1>欢迎来到 Microblog</h1>
     <p>Microblog is base on Node.js</p>
@@ -6,20 +7,7 @@
         <a href="/reg" class="btn btn-large">register now</a>
     </p>
 </div>
-
-<div class="row">
-    <div class="span4">
-        <h2>Carbo say:</h2>
-        <p>是皮鞋后部的一条小带子或一个小环，它可以使你方便地把鞋子穿起来，但生活中很少应用作为原意的。</p>
-    </div>
-
-    <div class="span4">
-        <h2>omar say:</h2>
-        <p>Bootstrap是Twitter推出的一个开源的用于前端开发的工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目</p>
-    </div>
-
-    <div class="span4">
-        <h2>wind say:</h2>
-        <p>BootStrap 入门教程 (一) 2011年,twitter 的“一小撮”工程师为了提高他们内部的分析和管理能力,用业余时间为他们的产品构建 了一套易用、优雅、灵活、可扩展...</p>
-    </div>
-</div>
+<% }else{ %>
+    <%- partial('say')  %>
+<% } %>
+    <%- partial('posts',{posts:posts}) %>

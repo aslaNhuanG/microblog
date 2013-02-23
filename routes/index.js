@@ -5,12 +5,19 @@ var Post = require('../models/post.js');
 module.exports = function(app) {
     // 首页
     app.get('/', function(req, res) {
-        res.render('index', {
-            title: '首页',
-            user: req.session.user,
-            error: req.flash('error').toString(),
-            success: req.flash('success').toString()
-        });
+        Post.get(null, function(err, posts){
+            if(err){
+                res.flash('error',err);
+                posts = [];
+            }
+            res.render('index', {
+                title: '首页',
+                posts: posts,
+                user: req.session.user,
+                error: req.flash('error').toString(),
+                success: req.flash('success').toString()
+            });
+        })
     });
 
     // 注册
@@ -117,6 +124,7 @@ module.exports = function(app) {
         next();
     }
 
+    app.post('/post', checkLogin);
     app.post('/post', function(req, res){
         var currentUser = req.session.user;
         var post = new Post(currentUser.name, req.body.post);
@@ -136,7 +144,9 @@ module.exports = function(app) {
                 req.flash('error','用户不存在');
                 return res.redirect('/');
             }
+            console.log(user.name)
             Post.get(user.name, function(err, posts){
+                console.log(posts)
                 if(err){
                     req.flash('error',err);
                     return   res.redirect('/');

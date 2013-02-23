@@ -32,7 +32,7 @@ Post.prototype.save = function save(callback){
             return callback(err);
         }
         // 读取 posts 集合
-        db.collection('post', function(err, collection){
+        db.collection('posts', function(err, collection){
             if(err){
                 mongodb.close();
                 return callback(err);
@@ -60,12 +60,13 @@ Post.get = function get(username, callback){
             }
             var query = {};
             if(username){
-                query.username = username;
+                query.user = username;
             }
             collection
                 .find(query)
                 .sort({time:-1})
                 .toArray(function(err, docs){
+                    console.log(333,docs);
                     mongodb.close();
                     if(err){
                         callback(err, null);
